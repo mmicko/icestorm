@@ -4,21 +4,21 @@ ifeq ($(STATIC),1)
 LDFLAGS += -static
 endif
 
-all: icemulti$(EXE)
+all: $(BUILD_PREFIX)icemulti$(EXE)
 
-icemulti$(EXE): icemulti.o
+$(BUILD_PREFIX)icemulti$(EXE): icemulti.o
 	$(CXX) -o $@ $(LDFLAGS) $^ $(LDLIBS)
 
 install: all
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp icemulti$(EXE) $(DESTDIR)$(PREFIX)/bin/icemulti$(EXE)
+	cp $(BUILD_PREFIX)icemulti$(EXE) $(DESTDIR)$(PREFIX)/bin/$(BUILD_PREFIX)icemulti$(EXE)
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/icemulti$(EXE)
+	rm -f $(DESTDIR)$(PREFIX)/bin/$(BUILD_PREFIX)icemulti$(EXE)
 
 clean:
-	rm -f icemulti$(EXE)
-	rm -f icemulti.exe
+	rm -f $(BUILD_PREFIX)icemulti$(EXE)
+	rm -f $(BUILD_PREFIX)icemulti.exe
 	rm -f *.o *.d
 
 -include *.d

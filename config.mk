@@ -1,6 +1,7 @@
 PREFIX ?= /usr/local
 DEBUG ?= 0
 ICEPROG ?= 1
+BUILD_PREFIX ?=
 
 CXX ?= clang++
 CC ?= clang
@@ -22,7 +23,7 @@ CFLAGS += -MD -O$(OPT_LEVEL) $(DBG_LEVEL) -W$(WARN_LEVEL) -std=$(C_STD) -I$(PREF
 CXXFLAGS += -MD -O$(OPT_LEVEL) $(DBG_LEVEL) -W$(WARN_LEVEL) -std=$(CXX_STD) -I$(PREFIX)/include
 
 DESTDIR ?=
-CHIPDB_SUBDIR ?= icebox
+CHIPDB_SUBDIR ?= $(BUILD_PREFIX)icebox
 
 ifeq ($(MXE),1)
 EXE = .exe
